@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "text": "收藏夹",
+    "children": [
+      {
+        "id": 11,
+        "text": "购物",
+        "state": "open",
+        "children": [
+          {
+            "id": 111,
+            "text": "京东",
+            "url": "https://www.jd.com"
+          },
+          {
+            "id": 112,
+            "text": "天猫",
+            "url": "https://www.tmall.com",
+            "checked":true
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "text": "学习",
+        "children": [
+          {
+            "id": 121,
+            "text": "百度",
+            "url": "https://www.baidu.com"
+          },
+          {
+            "id": 122,
+            "text": "CSDN",
+            "url": "https://blog.csdn.net/"
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "text": "用户管理",
+        "url": "/user/main"
+      },
+      {
+        "id": 12,
+        "text": "角色管理",
+        "url": "/role/main"
+      },
+      {
+        "id": 13,
+        "text": "权限管理",
+        "url": "/auth/main"
+      },
+      {
+        "id": 14,
+        "text": "登录页面",
+        "url": "/login"
+      }
+    ]
+  }
+]

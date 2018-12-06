@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hwua.rbac.dao.RoleMapper">
+
+    <select id="queryAll" resultType="role">
+        SELECT * FROM role ORDER BY orders
+    </select>
+
+    <select id="queryValid" resultType="role">
+        SELECT * FROM role WHERE valid = 1 ORDER BY orders
+    </select>
+
+    <select id="queryRoleIdByUserId" resultType="int" parameterType="int">
+        SELECT role.dbid
+        FROM user,role,user_role
+        WHERE
+            user_role.roleId = role.dbid
+            AND user_role.userId = user.dbid
+            AND user.dbid = #{userId}
+    </select>
+
+</mapper>
