@@ -52,7 +52,7 @@
     </update>
 
     <select id="queryAuthByUserId" parameterType="int" resultType="auth">
-        SELECT *,dbid id,authName text FROM auth WHERE dbid IN(
+        SELECT *,dbid id,authName text FROM auth WHERE layer > 0 AND type = 1 AND dbid IN(
             SELECT authId FROM role_auth WHERE roleId IN (
                 SELECT user_role.roleId FROM user_role WHERE userId = #{userId}
             )

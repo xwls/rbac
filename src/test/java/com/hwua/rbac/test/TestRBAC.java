@@ -14,7 +14,7 @@ public class TestRBAC {
     public void test(){
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         AuthService authService = context.getBean(AuthService.class);
-        List<Auth> authTreeList = authService.getByUserId(26);
+        List<Auth> authTreeList = authService.getByUserId(12);
         System.out.println(JSON.toJSONString(authTreeList));
         context.close();
     }

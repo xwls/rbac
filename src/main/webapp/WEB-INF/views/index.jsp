@@ -41,15 +41,14 @@
 </div>
 <div data-options="region:'west',split:true,title:'功能模块'" style="width:150px;">
     <div class="easyui-accordion" data-options="fit:true">
-        <div title="About" style="overflow:auto;">
+        <div title="XXX" style="overflow:auto;">
             <ul id="tree"></ul>
         </div>
-        <div title="Help" style="padding:10px;">
-            <h3>Help</h3>
-        </div>
-        <div title="TreeMenu" style="padding:10px 0;">
-            <h3>TreeMenu</h3>
-        </div>
+        <c:forEach items="${sessionScope.authList}" var="auth">
+            <div title="${auth.text}" style="overflow:auto;">
+                <ul id="tree-${auth.id}"></ul>
+            </div>
+        </c:forEach>
     </div>
 </div>
 <div data-options="region:'center'" style="overflow: hidden">

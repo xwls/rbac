@@ -1,5 +1,6 @@
 package com.hwua.rbac.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.hwua.rbac.dao.AuthMapper;
 import com.hwua.rbac.po.Auth;
 import com.hwua.rbac.po.TreeNode;
@@ -53,7 +54,7 @@ public class AuthServiceImpl implements AuthService {
         Auth father = null;
         Auth son = null;
         List<Auth> children = null;
-        for (int i = 0; i < authTrees.size(); i++) {
+        for (int i = authTrees.size() - 1; i >= 0; i--) {
             children = new ArrayList<>();
             //默认第i个是father
             father = authTrees.get(i);
@@ -66,6 +67,13 @@ public class AuthServiceImpl implements AuthService {
                 }
             }
             father.setChildren(children);
+        }
+        //去掉层级不为1的权限
+        for (int i = 0; i < authTrees.size(); i++) {
+            if (!authTrees.get(i).getLayer().equals(1)){
+                authTrees.remove(i);
+                i--;
+            }
         }
         return authTrees;
     }
