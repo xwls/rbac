@@ -1,3 +1,5 @@
+<%@ page import="com.alibaba.fastjson.JSON" %>
+<%@ page import="com.hwua.rbac.po.Auth" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
@@ -41,12 +43,42 @@
 </div>
 <div data-options="region:'west',split:true,title:'功能模块'" style="width:150px;">
     <div class="easyui-accordion" data-options="fit:true">
-        <div title="XXX" style="overflow:auto;">
+        <%--<div title="XXX" style="overflow:auto;">
             <ul id="tree"></ul>
-        </div>
+        </div>--%>
         <c:forEach items="${sessionScope.authList}" var="auth">
             <div title="${auth.text}" style="overflow:auto;">
                 <ul id="tree-${auth.id}"></ul>
+                <script type="text/javascript">
+                    <%
+                        Auth auth = (Auth) pageContext.getAttribute("auth");
+                        String authJson = JSON.toJSONString(auth.getChildren());
+                        pageContext.setAttribute("authJson",authJson);
+                    %>
+                    var treeData = '${authJson}';
+                    treeData = JSON.parse(treeData);
+                    $("#tree-${auth.id}").tree({
+                        data:treeData,
+                        onClick:function (node) {
+                            if (node.children.length === 0){
+                                //打开页面
+                                var mainTabs = $("#main-tabs");
+                                if (!mainTabs.tabs("exists",node.text)){
+                                    //添加tab
+                                    mainTabs.tabs("add",{
+                                        title:node.text,
+                                        content:"<iframe width='100%' height='100%' src='${path}"+node.authURL+"'/>",
+                                        closable: true
+                                    });
+                                } else {
+                                    // 选中
+                                    mainTabs.tabs("select",node.text);
+                                }
+
+                            }
+                        }
+                    });
+                </script>
             </div>
         </c:forEach>
     </div>

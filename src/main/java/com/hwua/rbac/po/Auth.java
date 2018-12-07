@@ -16,6 +16,24 @@ public class Auth {
     private String text;
     private List<Auth> children;
 
+    @Override
+    public String toString() {
+        return "Auth{" +
+                "dbid=" + dbid +
+                ", authName='" + authName + '\'' +
+                ", authCode='" + authCode + '\'' +
+                ", authURL='" + authURL + '\'' +
+                ", type='" + type + '\'' +
+                ", parentId=" + parentId +
+                ", orders=" + orders +
+                ", valid='" + valid + '\'' +
+                ", layer=" + layer +
+                ", id=" + id +
+                ", text='" + text + '\'' +
+                ", children=" + children +
+                '}';
+    }
+
     public Integer getId() {
         return id;
     }
